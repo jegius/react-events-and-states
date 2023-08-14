@@ -1,0 +1,19 @@
+.main {
+    display: flex;
+    margin: 1rem;
+    flex-direction: column;
+    border-radius: .5rem;
+    padding: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 0 5px  #eee;
+    transition: background-color .2s ease-in-out, box-shadow .2s ease-in-out;
+}
+
+.main-content {
+    display: flex;
+}
+
+.main:hover {
+    box-shadow: 0 0 23px #eee;
+}

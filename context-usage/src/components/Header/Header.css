@@ -1,0 +1,15 @@
+.header {
+    justify-content: space-between;
+    display: flex;
+    padding: 2rem 4rem;
+    margin: 1rem;
+    border-radius: .5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color .2s ease-in-out, box-shadow .2s ease-in-out;
+    box-shadow: 0 0 5px  #eee;
+}
+
+.header:hover {
+    box-shadow: 0 0 23px #eee;
+}

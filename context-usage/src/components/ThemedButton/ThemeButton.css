@@ -1,0 +1,18 @@
+.button-wrapper__button {
+    background: none;
+    color: inherit;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    box-shadow: 0 0 12px #eeeeee;
+    padding: .3rem 1rem;
+    border-radius: .5rem;
+    transition: box-shadow .4s ease-in-out, background-color .3s ease-in-out, color .2s ease-in-out;
+}
+
+.button-wrapper__button:hover {
+    box-shadow: 0 0 5px #eeeeee inset;
+    background-color: lightslategrey;
+    color: #fff;
+}

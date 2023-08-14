@@ -1,0 +1,32 @@
+.app {
+    min-height: 100vh;
+    display: flex;
+    min-width: 100vw;
+    background-color: #eee;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.inner {
+    height: 10rem;
+    width: 10rem;
+    cursor: pointer;
+    border-radius: 2rem;
+    box-shadow: 0 0 .03rem .2rem #2a578d;
+    background-color: darkslategrey;
+    position: absolute;
+    transition: box-shadow .2s ease-in, transform .04s linear, background-color .1s ease-in-out, border-radius 5ms ease-in-out;
+}
+
+.inner:hover {
+    box-shadow: 0 0 .3rem .2rem #2a578d;
+}
+
+.inner_active {
+    cursor: move;
+    border-radius: 20rem;
+    transform: scale(.5);
+    background-color: steelblue;
+    box-shadow: 0 0 .3rem .2rem lightseagreen;
+}
