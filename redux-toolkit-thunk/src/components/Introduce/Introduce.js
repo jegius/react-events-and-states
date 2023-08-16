@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {selectShowRegistration, selectUser} from '../../store/selectors';
-import {setShowRegistration, setUser} from '../../store/actions';
 import {disableError} from '../helpers';
 import './Introduce.css';
+import {setShowRegistration, setUser} from '../../store/votingSlice';
 
 
 export function Introduce() {

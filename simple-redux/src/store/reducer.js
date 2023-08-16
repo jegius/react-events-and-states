@@ -45,11 +45,6 @@ const votingReducer = (state = initialState, action) => {
                 isCanVote: false,
                 error: action.payload
             };
-        case ADD_ITEM:
-            return {
-                ...state,
-                items: [...state.items, action.payload]
-            };
         case SET_ITEMS:
             return {
                 ...state,

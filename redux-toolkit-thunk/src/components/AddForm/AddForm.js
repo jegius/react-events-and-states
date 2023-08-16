@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {setItems} from '../../store/actions';
 import './AddForm.css';
 import {Start} from '../Start/Start';
 import {selectIsStarted} from '../../store/selectors';
+import {postItem} from '../../store/thunks';
 import {disableError} from '../helpers';
 
 export function AddForm() {
@@ -11,8 +11,7 @@ export function AddForm() {
     const isStarted = useSelector(selectIsStarted);
     const [item, setItem] = useState('');
     const [error, setError] = useState('');
-
-    const handleSubmit = async (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
 
         if (!item) {
@@ -20,19 +19,7 @@ export function AddForm() {
             return;
         }
 
-        const response = await fetch('http://localhost:3001/api/voteItems', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                name: item,
-                votes: 0
-            }),
-        })
-        const result = await response.json();
-
-        dispatch(setItems(result));
+        dispatch(postItem(item));
         setItem('');
     };
 

@@ -6,11 +6,6 @@ export const SET_USER = 'SET_USER';
 export const SET_CAN_VOTE = 'SET_CAN_VOTE';
 export const SET_SHOW_REGISTRATION = 'SET_SHOW_REGISTRATION';
 
-export const addItem = item => ({
-    type: ADD_ITEM,
-    payload: item
-});
-
 export const setShowRegistration = isNeedToShow => ({
     type: SET_SHOW_REGISTRATION,
     payload: isNeedToShow

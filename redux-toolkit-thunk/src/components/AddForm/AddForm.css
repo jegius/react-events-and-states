@@ -1,0 +1,17 @@
+.add-form {
+    box-shadow: 0 0 12px rgba(42, 87, 141, 0.18);
+    padding: 1rem 1.5rem;
+    border-radius: .4rem;
+    min-width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-form__wrapper {
+    display: flex;
+}
+
+.error {
+    background-color: rgba(255, 0, 0, 0.26);
+}

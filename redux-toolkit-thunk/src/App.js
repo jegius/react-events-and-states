@@ -4,8 +4,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import {allVotes, selectItems, selectUser} from './store/selectors';
 import {VoteItem} from './components/VoteItem/VoteItem';
 import {useEffect} from 'react';
-import {setCanVote, setItems, setShowRegistration, setStart} from './store/actions';
 import {Introduce} from './components/Introduce/Introduce';
+import {fetchData} from './store/thunks';
+import {setShowRegistration} from './store/votingSlice';
 
 function App() {
     const items = useSelector(selectItems);
@@ -14,20 +15,7 @@ function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        Promise.all([
-                fetch('http://localhost:3001/api/voteItems'),
-                fetch('http://localhost:3001/api/isStarted'),
-                fetch(`http://localhost:3001/api/canVote/${user}`)
-            ]
-        ).then(responses => responses.map(response => response.json()))
-            .then(async ([asyncVteItems, asyncIsStarted, isCanVote]) => {
-                const items = await asyncVteItems;
-                const isStarted = await asyncIsStarted;
-                const canVote = await isCanVote;
-                dispatch(setItems(items));
-                dispatch(setStart(isStarted));
-                dispatch(setCanVote(canVote))
-            });
+        dispatch(fetchData(user));
     }, [dispatch, user]);
 
     return (
@@ -41,7 +29,8 @@ function App() {
                     </div>
                 </div> : <div className="registration-error">
                     Невозможно принять участие без регистрации!
-                    <button className="button" onClick={() => dispatch(setShowRegistration(true))}>Зарегистрироваться</button>
+                    <button className="button"
+                            onClick={() => dispatch(setShowRegistration(true))}>Зарегистрироваться</button>
                 </div>
             }
             <Introduce/>
