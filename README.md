@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+## Содержание
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. [browser-events](#browser-events)
+2. [component-state](#component-state)
+3. [context-usage](#context-usage)
+4. [simple-redux](#simple-redux)
+5. [redux-toolkit-thunk](#redux-toolkit-thunk)
+6. [vote-server-for-redux-tasks](#vote-server-for-redux-tasks)
+7. [homework](#homework)
 
-## Available Scripts
+## browser-events
 
-In the project directory, you can run:
+Модуль с простым React приложением для демонстрации возможностей JSX в работе с браузерными событиями. Подробности доступны в [README этого модуля](./browser-events/README.md).
 
-### `npm start`
+## component-state
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Модуль, базирующийся на `browser-events`, но с добавлением концепций для работы с состоянием компонентов в React. Подробности доступны в [README этого модуля](./component-state/README.md).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## context-usage
 
-### `npm test`
+Модуль с простым React приложением, демонстрирующий использование контекста в React, это демонстрируется через приложение с изменением темы. Подробности доступны в [README этого модуля](./context-usage/README.md).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## simple-redux
 
-### `npm run build`
+Простое приложение для голосования на React, демонстрирующее работу с Redux без использования middleware. Подробности доступны в [README этого модуля](./simple-redux/README.md).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## redux-toolkit-thunk
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Модуль на React, основанный на `simple-redux`, предназначен для знакомства студентов с функциями, предоставляемыми Redux Toolkit. Подробности доступны в [README этого модуля](./redux-toolkit-thunk/README.md).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## vote-server-for-redux-tasks
 
-### `npm run eject`
+Это модуль сервера, который требуется для работы `simple-redux` и `redux-toolkit-thunk`. Подробности доступны в [README этого модуля](./vote-server-for-redux-tasks/README.md).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## homework
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Модуль с домашним заданием - создание глобального чата с авторизацией. Подробности доступны в [README этого модуля](./homework/README.md).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Закончив работу с этими модулями, вы сможете лучше понять, как работают React и Redux и как разрабатывать современные веб-приложения на этих технологиях.
