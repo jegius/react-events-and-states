@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+## Описание
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Voting App - это приложение, позволяющее пользователем добавлять голоса и просматривать результаты голосования.
 
-## Available Scripts
+## Структура проекта
 
-In the project directory, you can run:
+Навигация по важным файлам и директориям проекта:
 
-### `npm start`
+- `app.mjs` - основной конфигурационный файл приложения, запускаемый при старте приложения.
+- `AddForm` - директория, содержащая код и документацию для компонента `AddForm`, который предназначен для добавления новых голосов.
+- `Introduce` - директория, содержащая код и документацию для компонента `Introduce`, отображающего вводную информацию об использовании приложения.
+- `Start` - директория, содержащая код и документацию для компонента `Start`, включающего функцию начала голосования.
+- `VoteItem` - директория, содержащая код и документацию для компонента `VoteItem`, отображающего отдельный пункт голосования.
+- `store` - директория, содержащая слой Redux приложения, включая действия, редукторы и селекторы.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Как использовать
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Приложение должно быть запущено с помощью `node app.mjs` после выполнения `npm install` для установки всех зависимостей.
 
-### `npm test`
+## Обзор компонентов и работа с Redux
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Каждый из компонентов имеет собственные директории, содержащие документацию, описывающую их поведение и способы использования. Заинтересованные стороны могут обратиться к `README.md` в каждой из этих директорий для получения дополнительной информации.
 
-### `npm run build`
+Слои Redux приложения содержат редукторы и селекторы, используемые при переходе на новое состояние, а также логику извлечения данных. Руководство по использованию этих слоев можно найти в `README.md`, расположенном в папке `store`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Документация по компонентам
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [`AddForm`](./src/components/AddForm/README.md) - форма для добавления новых голосований.
+- [`Introduce`](./src/components/Introduce/README.md) - вкладка с вводной информацией.
+- [`Start`](./src/components/Start/README.md) - функция для начала голосования.
+- [`VoteItem`](./src/components/VoteItem/README.md) - представление отдельного пункта голосования.
+- [`store`](./src/store/README.md) - конфигурация Redux, включает селекторы, редукторы и middleware для организации хранения данных.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Помощь и поддержка
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+В случае появления проблем или вопросов не стесняйтесь обращаться к нашей службе поддержки.

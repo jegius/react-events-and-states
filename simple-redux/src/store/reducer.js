@@ -1,5 +1,4 @@
 import {
-    ADD_ITEM,
     SET_CAN_VOTE, SET_ERROR,
     SET_ITEMS,
     SET_SHOW_REGISTRATION,

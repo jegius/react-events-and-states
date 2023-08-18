@@ -1,70 +1,93 @@
-# Getting Started with Create React App
+# Проект React - Переключатель Тем
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Это учебный проект, показывающий, как можно применять и переключать темы на React.
 
-## Available Scripts
+## Содержание
 
-In the project directory, you can run:
+* [Технологии](#технологии)
+* [Установка](#установка)
+* [Описание кода](#описание-кода)
+    * [ThemeContext](#themecontext)
+    * [App](#app)
+    * [ThemeProvider](#themeprovider)
+    * [ThemedButton](#themedbutton)
 
-### `npm start`
+## Технологии
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* React
+* CSS
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Установка
 
-### `npm test`
+Чтобы запустить проект локально, сделайте следующее:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Клонируйте этот репозиторий.
+2. Установите все необходимые модули с помощью `npm install`.
+3. Запустите проект с помощью `npm start`. Проект будет загружен в вашем браузере по адресу `localhost:3000`.
 
-### `npm run build`
+## Описание кода
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### ThemeContext
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Создаем контекст для работы с темами.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```jsx
+export const ThemeContext = React.createContext(undefined);
+```
 
-### `npm run eject`
+### App
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+`App` - это наш главный компонент, здесь мы используем контекст `ThemeContext` для установки текущей темы и применения соответствующего класса CSS, который определяет светлую или темную тему для приложения.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```jsx
+export const App = () => {
+    const {theme} = useContext(ThemeContext);
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    return (
+        <div className={`container ${theme}`}>
+            // Компоненты приложения здесь...
+        </div>
+    );
+};
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### ThemeProvider
 
-## Learn More
+`ThemeProvider` - это компонент контекста, который хранит состояние текущей темы. Можно переключаться между светлой и темной темой с помощью функции `toggleTheme`.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```jsx
+export const ThemeProvider = ({children}) => {
+    const [theme, setTheme] = useState('light-theme');
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    const toggleTheme = () => {
+        setTheme(prevTheme => prevTheme === 'light-theme' ? 'dark-theme' : 'light-theme');
+    };
 
-### Code Splitting
+    return (
+        <ThemeContext.Provider value={{theme, toggleTheme}}>
+            {children}
+        </ThemeContext.Provider>
+    );
+};
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### ThemedButton
 
-### Analyzing the Bundle Size
+`ThemedButton` - это компонент кнопки, он также использует контекст `ThemeContext` для изменения своего внешнего вида на основе текущей темы. По клике на кнопку вызывается `toggleTheme`, который меняет текущую тему.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```jsx
+export const ThemedButton = () => {
+    const {theme, toggleTheme} = useContext(ThemeContext);
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    return (
+        <>
+            <div className={`button-wrapper ${theme}`}>
+                <button className={`button-wrapper__button ${theme}`} onClick={toggleTheme}>
+                    Switch Theme
+                </button>
+            </div>
+        </>
+    );
+};
+```
+Таким образом, этот проект демонстрирует, как можно работать с React Context для применения и переключения тем.
