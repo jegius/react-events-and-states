@@ -7,4 +7,4 @@ export const selectAllVotedForItem = (store, itemId) => store.items.find(({id}) 
 export const selectVotedCounterForItem = (store, itemId) => selectAllVotedForItem(store, itemId).length ?? 0;
 export const isSelected = (store, itemId, user) => selectAllVotedForItem(store, itemId).includes(user);
 export const allVotes = (store) => store?.items?.reduce((result, {voted}) => result + voted.length, 0) ?? 0;
-export const selectPercentByAll = (store, {voted}) => (voted.length / allVotes(store)) * 100;
+export const selectPercentByAll = (store, {voted}) => voted.length ? (voted.length / allVotes(store)) * 100 : 0;

@@ -2,6 +2,7 @@ import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import './VoteItem.css';
 import {
+    allVotes,
     isSelected,
     selectIsCanVote,
     selectIsStarted,

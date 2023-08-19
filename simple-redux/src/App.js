@@ -14,21 +14,25 @@ function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        Promise.all([
-                fetch('http://localhost:3001/api/voteItems'),
-                fetch('http://localhost:3001/api/isStarted'),
-                fetch(`http://localhost:3001/api/canVote/${user}`)
-            ]
-        ).then(responses => responses.map(response => response.json()))
-            .then(async ([asyncVteItems, asyncIsStarted, isCanVote]) => {
-                const items = await asyncVteItems;
-                const isStarted = await asyncIsStarted;
-                const canVote = await isCanVote;
-                dispatch(setItems(items));
-                dispatch(setStart(isStarted));
-                dispatch(setCanVote(canVote))
-            });
-    }, [dispatch, user]);
+        const newInterval = setInterval(async () => {
+            const response = Promise.all([
+                    fetch('http://localhost:3001/api/voteItems'),
+                    fetch('http://localhost:3001/api/isStarted'),
+                    fetch(`http://localhost:3001/api/canVote/${user}`)
+                ]
+            );
+            const [items, isStarted, canVote] = (await response).map(response => response.json());
+            dispatch(setItems(await items));
+            dispatch(setStart(await isStarted));
+            dispatch(setCanVote(await canVote))
+        }, 500)
+
+        return () => {
+            if (newInterval) {
+                clearInterval(newInterval);
+            }
+        }
+    }, [dispatch, user])
 
     return (
         <>

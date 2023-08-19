@@ -15,8 +15,16 @@ function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchData(user));
-    }, [dispatch, user]);
+        const newInterval = setInterval(async () => {
+            dispatch(fetchData(user))
+        }, 500);
+
+        return () => {
+            if (newInterval) {
+                clearInterval(newInterval);
+            }
+        }
+    }, [dispatch, user])
 
     return (
         <>

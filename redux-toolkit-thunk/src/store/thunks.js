@@ -57,15 +57,14 @@ export const voteItem = (id, user) => async dispatch => {
 };
 
 export const fetchData = (user) => async dispatch => {
-    const responses = await Promise.all([
-        fetch('http://localhost:3001/api/voteItems'),
-        fetch('http://localhost:3001/api/isStarted'),
-        fetch(`http://localhost:3001/api/canVote/${user}`)
-    ]);
-    const results = await Promise.all(responses.map(response => response.json()));
-    const [items, isStarted, canVote] = results;
-
-    dispatch(setItems(items));
-    dispatch(setStart(isStarted));
-    dispatch(setCanVote(canVote));
+    const response = Promise.all([
+            fetch('http://localhost:3001/api/voteItems'),
+            fetch('http://localhost:3001/api/isStarted'),
+            fetch(`http://localhost:3001/api/canVote/${user}`)
+        ]
+    );
+    const [items, isStarted, canVote] = (await response).map(response => response.json());
+    dispatch(setItems(await items));
+    dispatch(setStart(await isStarted));
+    dispatch(setCanVote(await canVote))
 };
