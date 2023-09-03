@@ -14,3 +14,42 @@ export const disableError = function (callback, delay = 500) {
         callback('');
     }, delay);
 }
+
+/**
+ * Функция для преобразования текста на кириллице в латиницу.
+ *
+ * @name cyrillicToLatin
+ * @function
+ * @exports
+ *
+ * @param {string} text - Строка на кириллице, которую необходимо преобразовать.
+ *
+ * @returns {string} Строка на латинице, являющаяся преобразованием исходной строки.
+ *
+ * @example
+ * const cyrillicText = "Привет, мир!";
+ * console.log(cyrillicToLatin(cyrillicText));  // "Privet, mir!"
+ *
+ */
+export function cyrillicToLatin(text) {
+    const cyrillic = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я'];
+    const latin = ['a', 'b', 'v', 'g', 'd', 'e', 'e', 'zh', 'z', 'i', 'y', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'f', 'h', 'ts', 'ch', 'sh', 'shch', 'i', 'y', 'e', 'yu', 'ya'];
+
+    function convertToLatin(char) {
+        const lowerChar = char.toLowerCase();
+        const index = cyrillic.indexOf(lowerChar);
+
+        if (index !== -1) {
+            return char === lowerChar
+                ? latin[index]
+                : latin[index].toUpperCase();
+        }
+
+        return char;
+    }
+
+    return text
+        .split('')
+        .map(convertToLatin)
+        .join('');
+}

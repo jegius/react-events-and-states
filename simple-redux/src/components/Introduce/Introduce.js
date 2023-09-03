@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {selectShowRegistration, selectUser} from '../../store/selectors';
 import {setShowRegistration, setUser} from '../../store/actions';
-import {disableError} from '../helpers';
+import {cyrillicToLatin, disableError} from '../helpers';
 import './Introduce.css';
 
 
@@ -21,7 +21,7 @@ export function Introduce() {
             return;
         }
 
-        dispatch(setUser(inputValue));
+        dispatch(setUser(cyrillicToLatin(inputValue)));
         dispatch(setShowRegistration(false));
 
         setInputValue('');
