@@ -16,7 +16,7 @@ export const ChatPage = () => {
     return (
         <div>
             <h1>Chat</h1>
-            <p>Hello {user.username}</p>
+            <p>Hello {localStorage.getItem('username')}</p>
             <button onClick={handleLogout}>Выйти</button>
         </div>
     )

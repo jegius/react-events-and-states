@@ -13,6 +13,7 @@ function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        setUser({username: localStorage.getItem('username')});
         checkToken(dispatch, user);
     }, [])
 

@@ -50,8 +50,16 @@ export const RegistrationPage = () => {
             })
         })
 
+        if (response.ok) {
+            dispatch(setUser({
+                username: inputUsername,
+                password: inputPassword
+            }))
+        }
+
         const result = await response.json();
         localStorage.setItem('token', result.token);
+        localStorage.setItem('username', inputUsername);
         checkToken(dispatch, user);
         console.log(result)
         console.log(user)
