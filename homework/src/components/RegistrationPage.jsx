@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../store/chatSlice'
 import { selectUser } from '../store/selectors'
-import { checkToken } from '../store/thunks'
+import { checkToken, registerUser, loginUser } from '../store/thunks'
 
 export const RegistrationPage = () => {
     const dispatch = useDispatch();
@@ -12,57 +12,12 @@ export const RegistrationPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const response = await fetch('http://localhost:3001/register', {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                username: inputUsername,
-                password: inputPassword
-            })
-        })
-
-        if (response.ok) {
-            dispatch(setUser({
-                username: inputUsername,
-                password: inputPassword
-            }))
-        }
-
-        const result = await response.json();
-        console.log(result)
-        console.log(user)
+        registerUser(dispatch, inputUsername, inputPassword);
     };
 
-    const handleLogin = async (e) => {
+    const handleLogin = (e) => {
         e.preventDefault();
-
-        const response = await fetch('http://localhost:3001/login', {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                username: inputUsername,
-                password: inputPassword
-            })
-        })
-
-        if (response.ok) {
-            dispatch(setUser({
-                username: inputUsername,
-                password: inputPassword
-            }))
-        }
-
-        const result = await response.json();
-        localStorage.setItem('token', result.token);
-        localStorage.setItem('username', inputUsername);
-        checkToken(dispatch, user);
-        console.log(result)
-        console.log(user)
+        loginUser(dispatch, user, inputUsername, inputPassword);
     }
 
     return (

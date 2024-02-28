@@ -1,7 +1,7 @@
 import {useDispatch, useSelector } from 'react-redux';
-import { setUser } from '../store/chatSlice';
 import { selectUser } from '../store/selectors';
 import { checkToken } from '../store/thunks'
+import { AddMessageForm } from './AddMessageForm'
 
 
 export const ChatPage = () => {
@@ -10,14 +10,20 @@ export const ChatPage = () => {
 
     const handleLogout = async (e) => {
         localStorage.removeItem('token');
+        localStorage.removeItem('username');
         checkToken(dispatch, user);
     }
 
     return (
         <div>
-            <h1>Chat</h1>
-            <p>Hello {localStorage.getItem('username')}</p>
             <button onClick={handleLogout}>Выйти</button>
+            <h1>Chat</h1>
+            <div>
+
+            </div>
+            <div>
+                <AddMessageForm/>
+            </div>
         </div>
     )
 }
