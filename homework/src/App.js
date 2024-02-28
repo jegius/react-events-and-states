@@ -2,16 +2,23 @@ import logo from './logo.svg';
 import './App.css';
 import { RegistrationPage } from './components/RegistrationPage';
 import { ChatPage } from './components/ChatPage';
-import {useDispatch, useSelector} from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from './store/selectors';
+import { setUser } from './store/chatSlice'
+import { checkToken } from './store/thunks'
 
 function App() {
     const user = useSelector(selectUser)
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        checkToken(dispatch, user);
+    }, [])
+
     return (
         <>
-            {!user.isAuthenticated ? <RegistrationPage/> : <ChatPage/> }
+            {user.isAuthenticated ? <ChatPage/> : <RegistrationPage/> }
         </>
     );
 }

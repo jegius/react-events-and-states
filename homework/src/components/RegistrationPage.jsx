@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../store/chatSlice'
 import { selectUser } from '../store/selectors'
+import { checkToken } from '../store/thunks'
 
 export const RegistrationPage = () => {
     const dispatch = useDispatch();
@@ -49,14 +50,9 @@ export const RegistrationPage = () => {
             })
         })
 
-        if (response.ok) {
-            dispatch(setUser({
-                ...user,
-                isAuthenticated: true
-            }))
-        }
-
         const result = await response.json();
+        localStorage.setItem('token', result.token);
+        checkToken(dispatch, user);
         console.log(result)
         console.log(user)
     }
