@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import {useDispatch, useSelector } from 'react-redux';
-import { addMessage } from '../store/chatSlice'
-import { selectMessages } from '../store/selectors'
+import {useDispatch } from 'react-redux';
 import { sendMessage } from '../store/thunks'
 
 
-export const AddMessageForm = () => {
+export const AddMessageForm = ({onMessageSent}) => {
     const dispatch = useDispatch();
     const [inputValue, setInputValue] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         sendMessage(dispatch, inputValue);
+        setInputValue('');
     }
 
     return (

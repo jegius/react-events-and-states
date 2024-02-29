@@ -1,4 +1,4 @@
-import { setUser } from './chatSlice'
+import { setUser, setMessages } from './chatSlice'
 
 export const registerUser = async (dispatch, username, password) => {
     const response = await fetch('http://localhost:3001/register', {
@@ -57,6 +57,24 @@ export const sendMessage = async (dispatch, message) => {
         },
         body: JSON.stringify({body: message})
     })
+
+    fetchMassages(dispatch);
+}
+
+export const fetchMassages = async (dispatch) => {
+    const token = localStorage.getItem('token')
+
+    const response = await fetch('http://localhost:3001/chats', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    })
+
+    const result = await response.json();
+
+    dispatch(setMessages(result));
 }
 
 export const checkToken = async (dispatch, user) => {
