@@ -75,7 +75,6 @@ function TheChat() {
       });
       const answ = await req.json();
       dispatch(setAllMesages(answ));
-      console.log(answ);
     } catch (error) {
       console.error(`Error - ${error.name}: ${error.message}`);
     }
@@ -83,7 +82,7 @@ function TheChat() {
 
   useEffect(() => {
     if (!allMessages) return;
-    console.log(allMessages);
+
     getMessages();
     dispatch(setChatStatus(`user ${currentUser} in chat`));
   }, [messageText]);

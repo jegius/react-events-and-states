@@ -96,9 +96,8 @@ function RegAuth() {
     if (!user || !password) return;
     setMessage("");
     const key = await login(user, password);
-    console.log(key);
+
     if (!key) {
-      console.log("first");
       setMessage(`Пароль или логин написан некорректно!`);
       return;
     }
