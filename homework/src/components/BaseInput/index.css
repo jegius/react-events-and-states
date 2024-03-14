@@ -1,0 +1,19 @@
+.base-input-label {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.base-input {
+  background-color: aliceblue;
+  border: 3px solid transparent;
+  border-radius: 5px;
+  outline: none;
+}
+
+.base-input:focus-visible {
+  border: 3px solid #2e7bee;
+}
+
+.base-input-text {
+  color: aliceblue;
+}
