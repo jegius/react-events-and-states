@@ -32,9 +32,9 @@ function App() {
                 clearInterval(newInterval);
             }
         }
-    }, [dispatch, user])
+    }, [dispatch, user]) 
 
-    return (
+    return (  
         <>
             {user ?
                 <div className="vote-root">
