@@ -1,8 +1,36 @@
 import {useState} from 'react';
 import { useDispatch } from 'react-redux';
-import { authSlice } from '../store/actions';
+import { setUser } from '../store/actions';
 
 const useForm = () => {  // Мой пользовательский хук
+    
+    
+        // const messages = useSelector(selectMessages);
+        // const user = useSelector(selectUser);
+        // const dispatch = useDispatch();
+    
+        // useEffect(() => {
+        //     const newInterval = setInterval(async () => {
+        //         const response = Promise.all([
+        //                 fetch('http://localhost:3001/api/writeMessages'),
+        //                 fetch('http://localhost:3001/api/isStarted'),
+        //                 fetch(`http://localhost:3001/api/canWrite/${user}`)
+        //             ]
+        //         );
+        //         const [messages, isStarted, canWrite] = (await response).map(response => response.json());
+        //         dispatch(setMessages(await messages));
+        //         dispatch(setStart(await isStarted));
+        //         dispatch(setCanWrite(await canWrite))
+        //     }, 500)
+    
+        //     return () => {
+        //         if (newInterval) {
+        //             clearInterval(newInterval);
+        //         }
+        //     }
+        // }, [dispatch, user]) 
+    
+    
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -28,7 +56,7 @@ const useForm = () => {  // Мой пользовательский хук
 
         // Валидация прошла успешно, можно авторизоваться на Swagger
         // Здесь нужно заменить на реальный код авторизации
-        dispatch(authSlice.login({ name, password }));
+        dispatch(setUser({ name, password }));
         setName('');
         setPassword('');
     };

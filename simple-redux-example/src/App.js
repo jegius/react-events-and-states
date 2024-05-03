@@ -1,11 +1,11 @@
 import './App.css';
-import {AddForm} from './components/AddForm/AddForm';
+import {AddForm} from './components/AddForm/AddForm'; // Компонент формы для добавления новых элементов.
 import {useDispatch, useSelector} from 'react-redux';
 import {allVotes, selectItems, selectUser} from './store/selectors';
-import {VoteItem} from './components/VoteItem/VoteItem';
+import {VoteItem} from './components/VoteItem/VoteItem'; // Компонент для отображения отдельных элементов для голосования.
 import {useEffect} from 'react';
 import {setCanVote, setItems, setShowRegistration, setStart} from './store/actions';
-import {Introduce} from './components/Introduce/Introduce';
+import {Introduce} from './components/Introduce/Introduce'; // Компонент для ввода пользователя.
 
 function App() {
     const items = useSelector(selectItems);
@@ -48,7 +48,7 @@ function App() {
                     <button className="button" onClick={() => dispatch(setShowRegistration(true))}>Зарегистрироваться</button>
                 </div>
             }
-            <Introduce/>
+            <Introduce/> 
         </>
     );
 }
