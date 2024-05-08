@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
-import MessageList from "../components/MessageList";
-import MessageForm from "../components/MessageForm";
+import { Outlet } from "react-router-dom";
 import { useSelector } from 'react-redux';
 
-const ChatPage = () => {
+export const ChatPage = () => {
 
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
@@ -19,12 +18,9 @@ const ChatPage = () => {
       {isAuthenticated && (
         <div>
           <h1 className="title">Global Chat</h1>
-          <MessageList/>
-          <MessageForm/>
+          <Outlet /> {/* Дочерние компоненты */}
         </div>
       )}
     </>
   );
 };
-
-export default ChatPage;

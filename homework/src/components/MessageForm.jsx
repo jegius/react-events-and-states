@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const MessageForm = () => {
+export const MessageForm = () => {
   const [message, setMessage] = useState("");
 
   const handleSubmit = (e) => {
@@ -25,5 +25,3 @@ const MessageForm = () => {
     </form>
   );
 };
-
-export default MessageForm;

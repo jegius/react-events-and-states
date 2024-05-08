@@ -1,17 +1,6 @@
-
-
 .registration-error {
     min-width: 100vw;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.registration-error {
-    min-width: 100vw;
-    min-height: 100vh;
+    margin-top: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,13 +16,18 @@
 
 .title {
     font-size: 22px;
-    margin: 10px 0;
+    color: #774c4c;
+}
+
+.title-description {
+    font-size: 16px;
     color: #774c4c;
 }
 
 .form-container {
+    margin-top: 100px;
     padding: 2rem;
-    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 1rem 0 #0000001a;
     border-radius: 1rem;
     transition: all 0.3s ease-out;
     align-items: center;
@@ -85,6 +79,8 @@
 .button {
     padding: 1rem;
     margin-bottom: 1rem;
+    text-align: center;
+    text-decoration: none;
     border: none;
     color: white;
     background-color: #4f978c;
@@ -93,7 +89,7 @@
     transition: background-color 0.3s ease-out;
 }
 
-.form-button:hover {
+.button:hover {
     background-color: #94c1ba;
 }
 

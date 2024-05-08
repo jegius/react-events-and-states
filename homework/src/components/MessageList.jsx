@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Message from "./Message";
 
-const MessageList = () => {
+export const MessageList = () => {
   const [messages, setMessages] = useState([]);
 //   const currentUser = useSelector((state) => state.auth.currentUser);
 
@@ -30,5 +30,3 @@ const MessageList = () => {
     </div>
   );
 };
-
-export default MessageList;

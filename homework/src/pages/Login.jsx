@@ -1,28 +1,15 @@
 import {useState} from 'react';
 import { redirect } from "react-router-dom";
 
-const registrationAction = (username, password) => { // Отправляем запрос на сервер
-    
-    const data = {
-        username,
-        password
-    };
-
-    console.log(data);
-
-    return fetch('http://localhost:3001/register', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
+const loginAction = () => { // Отправляем запрос на сервер
+    return fetch('http://localhost:3001/chats', {
+        header: {
+            'Content-Type': 'application/json',
+            authorization: `Bearer ${'сохранённый токен'}`,
         },
-        body: JSON.stringify(data),
     }).then((res) => {
-        if (res.ok) {
-            return res.json();
-        }
-
-        return Promise.reject(res.status);
-    });
+        // код обработки ответа от сервера
+    })
 }
 
 const useForm = () => {  // Пользовательский хук
@@ -42,26 +29,26 @@ const useForm = () => {  // Пользовательский хук
     };
 
     const onSubmitHandle = (event) => { // При нажатии на кнопку Register
-        event.preventDefault(); // Отмена перезагрузки
+        event.preventDefault();
         if (!validateForm()) { // Если валидация не прошла
             return;
         }
-        // И если прошла успешно, то авторизовация на Swagger:
-        registrationAction(name, password);
-        redirect("/login"); // И перенаправление на страницу авторизациии
+        // И если прошла успешно, то авторизовация на Swagger
+        loginAction(name, password);
+        redirect("/chat");
 
     }
 
     return { name, setName, password, setPassword, error, onSubmitHandle };
 };
 
-export const Registration = () => { //Компонент с регистрацией
+export const Login = () => { //Компонент с авторизацией
     const { name, setName, password, setPassword, error, onSubmitHandle } = useForm();
 
     return (
         <div className="wrapper">
             <div className="form-container">
-                <h1 className="title">Please register to start!</h1>
+                <h1 className="title">LOG IN!</h1>
                 <form onSubmit={onSubmitHandle}> 
                     <div className="form-container_item">
                         <input type="text" name="name" placeholder="Enter your login" className="input"
@@ -75,7 +62,7 @@ export const Registration = () => { //Компонент с регистраци
                         {error.password && <div className="error-message">{error.password}</div>}
                     </div>
 
-                    <button className="button" type="submit">Register</button>
+                    <button className="button" type="submit">Log in</button>
                 </form>
             </div>
         </div>
