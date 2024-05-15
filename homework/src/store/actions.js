@@ -1,37 +1,43 @@
-export const ADD_MESSAGE = 'ADD_MESSAGE'; //Тип действия для добавления сообщения
-export const SET_START = 'SET_START'; //Тип действия для установки значения, указывающего, начат ли чат
-export const SET_ERROR = 'SET_ERROR'; // Тип действия для установки сообщения об ошибке.
-export const SET_MESSAGES = 'SET_MESSAGE'; // Тип действия для установки списка сообщений
-export const SET_USER = 'SET_USER'; // Тип действия для установки текущего пользователя.
-export const SET_CAN_WRITE = 'SET_CAN_WRITE'; // Тип действия для указания возможности написать в чате
-export const SET_SHOW_REGISTRATION = 'SET_SHOW_REGISTRATION'; //Тип действия для указания отображается ли регистрация
+export const ADD_MESSAGE = "ADD_MESSAGE"; // используется для добавления нового сообщения в существующий массив сообщений в состоянии
+export const SET_MESSAGES = "SET_MESSAGES"; // используется для установки всего массива сообщений в состоянии
 
-export const setShowRegistration = isNeedToShow => ({
-    type: SET_SHOW_REGISTRATION,
-    payload: isNeedToShow
-});
+export const sendMessage = (message) => async (dispatch) => {
+  try {
+    // Отправить сообщение на сервер
+    const response = await fetch('http://localhost:3001/chats', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message }),
+    });
 
-export const setCanWrite = isCanWrite => ({
-    type: SET_CAN_WRITE,
-    payload: isCanWrite
-});
+    // Извлечь данные из ответа
+    const data = await response.json();
 
-export const setUser = userName => ({
-    type: SET_USER,
-    payload: userName
-});
+    // Добавить сообщение в историю сообщений
+    dispatch({ type: ADD_MESSAGE, payload: data.message });
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-export const setError = error => ({
-    type: SET_ERROR,
-    payload: error
-});
+export const getChats = async () => {
+  try {
+    // Загрузить историю сообщений с сервера
+    const response = await fetch('http://localhost:3001/chats', {
+      method: "GET",
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1KIiwiaWF0IjoxNzE1Nzc4NDI4fQ.y91qfX5_D9mpFUjp5tS5k6tigHfuMumAuhHAOSC6Vzw"}`, //сохранённый токен
+      },
+    });
 
-export const setMessages = items => ({
-    type: SET_MESSAGES,
-    payload: items
-});
-
-export const setStart = isStarted => ({
-    type: SET_START,
-    payload: isStarted
-})
+    // Извлечь данные из ответа
+    const data = await response.json();
+    return data.messages;
+    
+  } catch (error) {
+    console.error(error);
+  }
+};

@@ -1,26 +1,18 @@
-import React, { useEffect } from "react";
-import { Outlet } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import React from "react";
+import { PrivateRoute } from "../store/PrivateRoute";
+import { MessageForm } from "../components/MessageForm";
+import { MessageList } from "../components/MessageList";
 
 export const ChatPage = () => {
-
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-
-  useEffect(() => {
-    if (!isAuthenticated) { // Если пользователь не авторизован, перенаправить на страницу регистрации
-      window.location.href = '/registration';
-    }
-  }, [isAuthenticated])
-
   return (
     <>
-      {/* Если пользователь авторизован, отобразить чат */}
-      {isAuthenticated && (
-        <div>
+      <PrivateRoute>
+        <div className="chat-wrapper">
           <h1 className="title">Global Chat</h1>
-          <Outlet /> {/* Дочерние компоненты */}
+          <MessageList />
+          <MessageForm />
         </div>
-      )}
+      </PrivateRoute>
     </>
   );
 };

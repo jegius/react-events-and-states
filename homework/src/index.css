@@ -1,8 +1,118 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.registration-error {
+  min-width: 100vw;
+  margin-top: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.title {
+  font-size: 22px;
+  color: #774c4c;
+}
+
+.title-description {
+  font-size: 16px;
+  color: #774c4c;
+}
+
+.form-container {
+  margin-top: 100px;
+  padding: 2rem;
+  box-shadow: 0 0 1rem 0 #0000001a;
+  border-radius: 1rem;
+  transition: all 0.3s ease-out;
+  align-items: center;
+  flex: 1;
+  text-align: left;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container_item {
+  margin-bottom: 1rem;
+}
+
+.input {
+  min-width: 20rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-out;
+  outline: none;
+}
+
+.input:focus {
+  box-shadow: 0 0 0.5rem 0 #504040ee;
+}
+
+.chat-wrapper {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.messageList {
+  margin-bottom: 10px;
+  min-width: 500px;
+  min-height: 550px;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 0.5rem 0 #ae8b8bee;
+}
+
+.messageFormContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.message-input {
+  min-width: 26rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-out;
+  outline: none;
+}
+
+.button {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  color: white;
+  background-color: #4f978c;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease-out;
+}
+
+.button:hover {
+  background-color: #94c1ba;
+}
+
+.error-message {
+  max-width: 22rem;
+  color: #ff0000;
+  font-size: 12px;
+  margin-top: 5px;
+}
+

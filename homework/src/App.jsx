@@ -3,9 +3,8 @@ import { MainPage } from "./pages/MainPage";
 import { ChatPage } from "./pages/ChatPage";
 import { Registration } from "./pages/Registration";
 import { Login } from "./pages/Login";
-import { MessageForm } from "./components/MessageForm";
-import { MessageList } from "./components/MessageList";
 import { Loader } from "./components/Loader";
+
 
   
 const router = createBrowserRouter( 
@@ -33,12 +32,8 @@ const router = createBrowserRouter(
       <Route
         path="chat" 
         element={<ChatPage />} 
-        // loader={chatLoader}
         fallbackElement={<Loader />} 
-      >
-          <Route element={<MessageList />}  /> {/* Компонент с историей чата */}
-          <Route element={<MessageForm />}  /> {/* Компонент формой отправки сообщений */}
-      </Route>
+      />
       
     </>
   )

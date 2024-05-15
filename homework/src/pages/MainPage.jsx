@@ -1,4 +1,3 @@
-import '../App.css'; // Стили для компонента App
 // import { useDispatch } from 'react-redux'; // Хуки Redux для работы с глобальным состоянием
 // import { setShowRegistration } from '../store/actions'; // Действия Redux
 import { LinkButton } from "../components/LinkButton";

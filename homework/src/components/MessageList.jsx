@@ -1,32 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getChats } from "../store/actions";
 import Message from "./Message";
 
 export const MessageList = () => {
-  const [messages, setMessages] = useState([]);
-//   const currentUser = useSelector((state) => state.auth.currentUser);
+  const dispatch = useDispatch();
+  const messages = useSelector((state) => state.chat.messages);
 
   useEffect(() => {
-    // Загружаем сообщения из хранилища
-    const storedMessages = JSON.parse(localStorage.getItem("messages") || "[]");
-    setMessages(storedMessages);
+    // Загрузить историю сообщений с сервера
+    getChats().then((data) => {
+      // Сохранить историю сообщений в состоянии Redux
+      dispatch({ type: "SET_MESSAGES", payload: data });
+    });
   }, []);
 
-  useEffect(() => {
-    // Сохраняем сообщения в хранилище
-    localStorage.setItem("messages", JSON.stringify(messages));
-  }, [messages]);
-
-  const addMessage = (message) => {
-    setMessages([...messages, message]);
-  };
 
   return (
     <div className="messageList">
-      {messages.map((message) => (
-        <Message key={message.id} message={message} 
-        // isCurrentUser={message.username === currentUser.username} 
-        />
-      ))}
+      <ul>
+        {messages.map((message) => (
+          <li key={message.id}>
+            <strong>{message.username}:</strong> {message.text}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
