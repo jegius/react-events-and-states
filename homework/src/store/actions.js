@@ -1,5 +1,7 @@
+////Это файл redux actions. Экспортируеются константы, которые представляют различные типы действий, а также функции экшенов, которые возвращают объект действия с заданными параметрами.
 export const ADD_MESSAGE = "ADD_MESSAGE"; // используется для добавления нового сообщения в существующий массив сообщений в состоянии
 export const SET_MESSAGES = "SET_MESSAGES"; // используется для установки всего массива сообщений в состоянии
+export const SET_CURRENTUSER = "SET_CURRENTUSER"; // используется для установки текущего пользователя. В данном файле не записан экшен, так как он происходит в файле Login.jsx
 
 export const sendMessage = (message) => async (dispatch) => {
   try {
@@ -29,7 +31,7 @@ export const getChats = async () => {
       method: "GET",
       headers: {
         'Content-Type': 'application/json',
-        authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1KIiwiaWF0IjoxNzE1Nzc4NDI4fQ.y91qfX5_D9mpFUjp5tS5k6tigHfuMumAuhHAOSC6Vzw"}`, //сохранённый токен
+        authorization: `Bearer ${""}`, //сохранённый токен
       },
     });
 
@@ -41,3 +43,4 @@ export const getChats = async () => {
     console.error(error);
   }
 };
+

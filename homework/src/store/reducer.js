@@ -11,18 +11,17 @@ const chatReducer = (state = initialState, action) => { // это функция
     switch (action.type) {
         case ADD_MESSAGE:
         return {
-            ...state,
-            messages: [...state.messages, action.payload],
+            ...state, // Принимается текущее состояние
+            messages: [...state.messages, action.payload], // Обновляем messages при добавлении сообщений
         };
 
         case SET_MESSAGES:
         return {
             ...state,
-            messages: action.payload,
+            messages: action.payload, // Обновляем messages при загрузке сообщений в историю
         };
 
-        default: // В зависимости от `action.type`, `votingReducer` изменяет различные аспекты состояния. Если тип действия неизвестен, редуктор вернет текущее состояние без изменений.
-
+        default: // В зависимости от `action.type`, `chatReducer` изменяет различные аспекты состояния. Если тип действия неизвестен, редуктор вернет текущее состояние без изменений.
         return state;
     }
 };

@@ -1,7 +1,8 @@
 import {useState} from 'react';
 import { useNavigate } from "react-router-dom";
+import { SET_CURRENTUSER } from '../store/actions';
 
-const loginAction = async (data) => { 
+const loginAction = (data) => async (dispatch) => { // вызываем dispatch , чтобы отправить действие, это способ вызвать изменение состояния
     try {
         const res = await fetch('http://localhost:3001/login', {
             method: 'POST',
@@ -17,16 +18,25 @@ const loginAction = async (data) => {
 
         const jsonResponse = await res.json(); // Парсим JSON
 
-        // Проверка, что ответ валидный JSON
-        if (typeof jsonResponse !== 'object' || jsonResponse === null) {
-            throw new Error('Invalid response from server: not a JSON object');
+        // Проверка, что ответ валидный JSON и содержит токен
+        if (typeof jsonResponse === 'object' && jsonResponse !== null && jsonResponse.token) {
+            // Записываем логин и токен в currentUser
+            dispatch({ 
+                type: SET_CURRENTUSER, 
+                payload: { 
+                    login: data.username,  // Используем username из data
+                    token: jsonResponse.token 
+                } 
+            });
+        } else {
+            // Обработка ошибки, если токен отсутствует
+            console.error("Ошибка входа: Токен не найден в ответе сервера"); 
+            throw new Error('Invalid server response: Token not found');
         }
 
-        return jsonResponse;
-
     } catch (error) {
-        console.log("Login failed:", error);
-        throw error; // Позволяет обработать ошибку на уровне компонента
+        console.error("Ошибка входа:", error);
+        throw error; 
     }
 };
 

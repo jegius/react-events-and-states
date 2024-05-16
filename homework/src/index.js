@@ -1,3 +1,4 @@
+//Хранилище Redux обычно используется для обеспечения доступа к состоянию приложения через все компоненты. Для этого  оборачиваем приложение в компонент `Provider` из библиотеки `react-redux`, передавая ему свое хранилище в качестве пропса `store`. Теперь все дочерние компоненты `App` могут подключиться к Redux Store и получить доступ к состоянию приложения или отправить новые действия.
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
@@ -15,7 +16,4 @@ root.render(
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
