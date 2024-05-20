@@ -1,42 +1,23 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { SET_CURRENTUSER } from '../store/actions';
 
-const loginAction = (data) => async (dispatch) => { // вызываем dispatch , чтобы отправить действие, это способ вызвать изменение состояния
-    try {
-        const res = await fetch('http://localhost:3001/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        });
+const loginAction = async (data) => { // Функция для отправки запроса на авторизацию на сервер
+    const res = await fetch('http://localhost:3001/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    });
 
-        if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
-        } 
-
-        const jsonResponse = await res.json(); // Парсим JSON
-
-        // Проверка, что ответ валидный JSON и содержит токен
-        if (typeof jsonResponse === 'object' && jsonResponse !== null && jsonResponse.token) {
-            // Записываем логин и токен в currentUser
-            dispatch({ 
-                type: SET_CURRENTUSER, 
-                payload: { 
-                    login: data.username,  // Используем username из data
-                    token: jsonResponse.token 
-                } 
-            });
-        } else {
-            // Обработка ошибки, если токен отсутствует
-            console.error("Ошибка входа: Токен не найден в ответе сервера"); 
-            throw new Error('Invalid server response: Token not found');
-        }
-
-    } catch (error) {
-        console.error("Ошибка входа:", error);
-        throw error; 
+    if (res.ok) {
+        return res.json();
+    } else if (res.status === 400) {
+        return Promise.reject({ message: "User doesn't exist"}); 
+    } else {
+        return await Promise.reject(res.status);
     }
 };
 
@@ -46,7 +27,9 @@ const useForm = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    const validateForm = () => { 
+    const dispatch = useDispatch();
+
+    const validateForm = () => { // Валидация формы
         const newError = {};
         if (!username) {
             newError.username = 'Name is required';
@@ -59,20 +42,25 @@ const useForm = () => {
 
     const onSubmitHandle = async (event) => { 
         event.preventDefault();
-        if (!validateForm()) { 
+        if (!validateForm()) { //Если валидация не прошла, либо пользователь не зарегистрирован 
             return;
         }
 
-        try {
-            const res = await loginAction({ username, password }); // Передача объекта данных
-            console.log("Server response:", res); // Выводим ответ сервера в консоль
-            nagitation('/chat');
-            
-            
-        } catch (error) {
-            alert("Login failed! Please check your login and pass!");
-        }
-    }
+        loginAction({ username, password }) //Вызываем функцию loginAction, которая отправляет запрос на авторизацию на сервер с именем пользователя и паролем
+            .then((res) => { // Если запрос прошел успешно (т.е. сервер ответил кодом состояния 200), то выполняется этот блок кода, res - это ответ от сервера, который содержит данные (токен)
+                if (res.token) { // Проверяем, существует ли поле token в ответе res. Если токен существует, значит, пользователь успешно авторизовался
+                    dispatch({ type: SET_CURRENTUSER, payload: res }); // Вызываем dispatch для отправки экшена SET_CURRENTUSER в Redux store. Payload экшена содержит данные, полученные от сервера в ответе res
+                    console.log(res);
+                    nagitation('/chat');
+                } 
+            })
+            .catch ((error) => { 
+                if (error.message === "User doesn't exist") {
+                    setError( "Login failed! Please check your login and pass!" );
+                    console.log(error.message);
+                }
+            })  
+    };
 
     return { username, setUserName, password, setPassword, error, onSubmitHandle };
 };
@@ -98,6 +86,9 @@ export const Login = () => { //Компонент с авторизацией
                     </div>
 
                     <button className="button" type="submit">Log in</button>
+
+                    {/* Пользователь не найден */}
+                    {error && <div className="error-message">{error}</div> }
                 </form>
             </div>
         </div>

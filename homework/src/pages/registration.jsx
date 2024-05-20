@@ -49,16 +49,18 @@ const useForm = () => {  // Пользовательский хук
           return;
         }
       
-        registrationAction(username, password).then((res) => {
-          if (res.message === 'Registered successfully') {
-            nagitation('/login');
-          } 
-        }).catch((error) => {
-          if (error.message === 'User already exists!') {
-            alert('User already exists');
-            nagitation('/login');
-          }
-        });
+        registrationAction(username, password)
+            .then((res) => {
+                if (res.message === 'Registered successfully') {
+                    nagitation('/login');
+                } 
+            })
+            .catch((error) => {
+                if (error.message === 'User already exists!') {
+                    alert('User already exists');
+                    nagitation('/login');
+                }
+            });
       };
       
 

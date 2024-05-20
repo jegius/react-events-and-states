@@ -4,7 +4,7 @@ import { ChatPage } from "./pages/ChatPage";
 import { Registration } from "./pages/Registration";
 import { Login } from "./pages/Login";
 import { Loader } from "./components/Loader";
-
+import { PrivateRoute } from "./components/PrivateRoute";
 
   
 const router = createBrowserRouter( 
@@ -31,7 +31,11 @@ const router = createBrowserRouter(
       {/* Cтраница с чатом */}
       <Route
         path="chat" 
-        element={<ChatPage />} 
+        element={
+          <PrivateRoute>
+            <ChatPage />
+          </PrivateRoute>
+        } 
         fallbackElement={<Loader />} 
       />
       
