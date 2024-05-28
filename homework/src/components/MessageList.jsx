@@ -23,7 +23,7 @@ const getChats = async (currentUser) => {
 };
 
 export const MessageList = () => {
-  const messages = useSelector((state) => state.chats);
+  const messages = useSelector((state) => state.chat);
   const currentUser = useSelector((state) => state.auth.currentUser.token);
   const dispatch = useDispatch();
 
@@ -31,6 +31,7 @@ export const MessageList = () => {
     getChats(currentUser) // Передаем currentUser в getChats
       .then((res) => {
         if (res.messages) {
+        
           dispatch({ type: SET_MESSAGES, payload: res.messages });
         }
       })

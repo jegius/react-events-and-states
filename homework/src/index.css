@@ -2,6 +2,7 @@
 
 body {
   font-family: "Reddit Sans", sans-serif;
+  background-color: #c8dfda;
 }
 
 .registration-error {
@@ -33,6 +34,7 @@ body {
 .form-container {
   margin-top: 100px;
   padding: 2rem;
+  background-color: #fff;
   box-shadow: 0 0 1rem 0 #0000001a;
   border-radius: 1rem;
   transition: all 0.3s ease-out;
@@ -65,21 +67,25 @@ body {
 }
 
 .chat-wrapper {
-  margin-top: 80px;
+  margin-top: 8vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
 }
 
 .messageList {
   margin-bottom: 10px;
-  min-width: 500px;
-  min-height: 550px;
+  width: 55vw;
+  height: 60vh;
   padding: 1rem;
+  background-color: #fff;
   border-radius: 0.5rem;
   border: 1px solid #ccc;
   box-shadow: 0 0 0.5rem 0 #ae8b8bee;
+  text-align: left;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  word-wrap: break-word;
 }
 
 .messageFormContainer {
@@ -89,7 +95,7 @@ body {
 }
 
 .message-input {
-  min-width: 26rem;
+  min-width: 50vw;
   padding: 1rem;
   border-radius: 0.5rem;
   border: 1px solid #ccc;

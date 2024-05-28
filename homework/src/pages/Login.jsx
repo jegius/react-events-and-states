@@ -14,8 +14,6 @@ const loginAction = async (data) => { // Функция для отправки 
 
     if (res.ok) {
         return res.json();
-    } else if (res.status === 400) {
-        return Promise.reject({ message: "User doesn't exist"}); 
     } else {
         return await Promise.reject(res.status);
     }
@@ -25,7 +23,7 @@ const useForm = () => {
     const nagitation = useNavigate();
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+    const [error, setError] = useState({});
 
     const dispatch = useDispatch();
 
@@ -46,19 +44,22 @@ const useForm = () => {
             return;
         }
 
+        const newError = {};
+
         loginAction({ username, password }) //Вызываем функцию loginAction, которая отправляет запрос на авторизацию на сервер с именем пользователя и паролем
             .then((res) => { // Если запрос прошел успешно (т.е. сервер ответил кодом состояния 200), то выполняется этот блок кода, res - это ответ от сервера, который содержит данные (токен)
                 if (res.token) { // Проверяем, существует ли поле token в ответе res. Если токен существует, значит, пользователь успешно авторизовался
+                    localStorage.setItem('username', res.username);; // Сохраняем username в localStorage
                     dispatch({ type: SET_CURRENTUSER, payload: res }); // Вызываем dispatch для отправки экшена SET_CURRENTUSER в Redux store. Payload экшена содержит данные, полученные от сервера в ответе res
-                    console.log(res);
                     nagitation('/chat');
+                    return res.json();
                 } 
             })
             .catch ((error) => { 
-                if (error.message === "User doesn't exist") {
-                    setError( "Login failed! Please check your login and pass!" );
-                    console.log(error.message);
+                if (error === 400) {
+                    newError.login = 'Username or password is incorrect. Please check your data!';
                 }
+                setError(newError);
             })  
     };
 
@@ -88,10 +89,9 @@ export const Login = () => { //Компонент с авторизацией
                     <button className="button" type="submit">Log in</button>
 
                     {/* Пользователь не найден */}
-                    {error && <div className="error-message">{error}</div> }
+                    {error.login && <div className="error-message">{error.login}</div>}
                 </form>
             </div>
         </div>
     );
 };
-

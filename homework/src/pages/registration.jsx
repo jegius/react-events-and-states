@@ -8,8 +8,6 @@ const registrationAction = async (username, password) => { // Отправляе
         password
     };
 
-    // console.log(data);
-
     const res = await fetch('http://localhost:3001/register', {
         method: 'POST',
         headers: {
@@ -19,18 +17,16 @@ const registrationAction = async (username, password) => { // Отправляе
     });
     if (res.ok) {
         return res.json();
-    } else if (res.status === 400) {
-        return Promise.reject({ message: 'User already exists' });
-      } else {
+    } else {
         return await Promise.reject(res.status);
-      }
+    }
 }
 
 const useForm = () => {  // Пользовательский хук
     const nagitation = useNavigate();
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+    const [error, setError] = useState({});
 
     const validateForm = () => { 
         const newError = {};
@@ -55,12 +51,12 @@ const useForm = () => {  // Пользовательский хук
                     nagitation('/login');
                 } 
             })
-            .catch((error) => {
-                if (error.message === 'User already exists!') {
-                    alert('User already exists');
+            .catch ((error) => { //если ошибка, выводим её в консоль
+                if (error === 400) {
+                    alert("User already exist. Please log in!");
                     nagitation('/login');
                 }
-            });
+            }); 
       };
       
 
