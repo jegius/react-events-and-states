@@ -5,7 +5,6 @@ import { ADD_MESSAGE } from '../store/actions'
 export const MessageForm = () => {
   const [message, setMessage] = useState("");
   const currentUser = useSelector((state) => state.auth.currentUser);
-     
 
   const dispatch = useDispatch();
 
@@ -35,21 +34,20 @@ export const MessageForm = () => {
     if(messageSent) {
       dispatch({ type: ADD_MESSAGE, payload: { username: currentUser.username, body: message } });
       setMessage("");
-      console.log({ username: currentUser.username, body: message });
     } else {
       alert("Message sending failed");
     }
+
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <div className="messageFormContainer">     
         <div>
-            <span> {currentUser.username}</span>
             <input
                 className="message-input"
                 type="text"
-                placeholder="Enter your message..."
+                placeholder={`${currentUser.username}, enter your message...`}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
             />

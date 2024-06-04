@@ -49,15 +49,23 @@ const useForm = () => {
         loginAction({ username, password }) //Вызываем функцию loginAction, которая отправляет запрос на авторизацию на сервер с именем пользователя и паролем
             .then((res) => { // Если запрос прошел успешно (т.е. сервер ответил кодом состояния 200), то выполняется этот блок кода, res - это ответ от сервера, который содержит данные (токен)
                 if (res.token) { // Проверяем, существует ли поле token в ответе res. Если токен существует, значит, пользователь успешно авторизовался
-                    localStorage.setItem('username', res.username);; // Сохраняем username в localStorage
-                    dispatch({ type: SET_CURRENTUSER, payload: res }); // Вызываем dispatch для отправки экшена SET_CURRENTUSER в Redux store. Payload экшена содержит данные, полученные от сервера в ответе res
+
+                    const user = {
+                        username,
+                        token: res.token,
+                    };
+
+                    // localStorage.setItem('token', res.token); // Сохраняем token в локальное хранилище
+                    localStorage.setItem('user', JSON.stringify({ username, token: res.token })); // Сохраняем user в локальное хранилище
+                    
+                    dispatch({ type: SET_CURRENTUSER, payload: user }); // Диспатчим user в состояние currentUser
                     nagitation('/chat');
                     return res.json();
                 } 
             })
             .catch ((error) => { 
                 if (error === 400) {
-                    newError.login = 'Username or password is incorrect. Please check your data!';
+                    newError.login = 'Username or password is incorrect. Please check your data or ';
                 }
                 setError(newError);
             })  
@@ -89,7 +97,10 @@ export const Login = () => { //Компонент с авторизацией
                     <button className="button" type="submit">Log in</button>
 
                     {/* Пользователь не найден */}
-                    {error.login && <div className="error-message">{error.login}</div>}
+                    {error.login && <div className="error-message">
+                        {error.login} 
+                        <a href="/registration">register</a>
+                    </div>}
                 </form>
             </div>
         </div>

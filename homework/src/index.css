@@ -95,7 +95,7 @@ body {
 }
 
 .message-input {
-  min-width: 50vw;
+  min-width: 48vw;
   padding: 1rem;
   border-radius: 0.5rem;
   border: 1px solid #ccc;
