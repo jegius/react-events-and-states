@@ -1,0 +1,43 @@
+.vote {
+  min-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: uppercase;
+  box-shadow: 0 0 12px rgba(42, 87, 141, 0.18);
+  padding: 1rem 1.5rem;
+  border-radius: 0.4rem;
+  margin: 1rem 0;
+  transition: border 0.2s ease;
+  border: dashed 0.3rem rgba(42, 87, 141, 0);
+  position: relative;
+  overflow: hidden;
+}
+
+.vote__back-line {
+  transition: right 0.3s ease;
+  border-radius: 0.5rem;
+  position: absolute;
+  right: -100%;
+  z-index: -1;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(52, 175, 134, 0.52);
+}
+
+.vote__counter {
+  font-weight: bold;
+  justify-self: flex-end;
+  text-transform: uppercase;
+}
+
+._selected {
+  border: dashed 0.3rem lightgreen;
+}
+
+.vote__bubble {
+  padding: 0.5rem;
+  background-color: #eeeeee;
+  border-radius: 0.5rem;
+}

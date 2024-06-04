@@ -1,0 +1,24 @@
+.wrapper {
+  min-height: 100vh;
+  min-width: 100vw;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  display: flex;
+  left: 0;
+  top: 0;
+  background-color: rgba(238, 238, 238, 0.73);
+}
+
+.introduce-form__controls {
+  min-width: 100%;
+  justify-content: space-between;
+  display: flex;
+}
+
+.introduce-form {
+  background-color: white;
+  padding: 2rem;
+  min-width: 20rem;
+  border-radius: 0.5rem;
+}
