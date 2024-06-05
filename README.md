@@ -5,8 +5,9 @@
 3. [context-usage](#context-usage)
 4. [simple-redux](#simple-redux)
 5. [redux-toolkit-thunk](#redux-toolkit-thunk)
-6. [vote-server-for-redux-tasks](#vote-server-for-redux-tasks)
-7. [homework](#homework)
+6. [mobx](#mobx)
+7. [vote-server-for-redux-tasks](#vote-server-for-redux-tasks)
+8. [homework](#homework)
 
 ## browser-events
 
@@ -27,6 +28,10 @@
 ## redux-toolkit-thunk
 
 Модуль на React, основанный на `simple-redux`, предназначен для знакомства студентов с функциями, предоставляемыми Redux Toolkit. Подробности доступны в [README этого модуля](./redux-toolkit-thunk/README.md).
+
+## mobx
+
+Модуль предназначен для знакомства студентов с MobX. Подробности доступны в [README этого модуля](./mobx/README.md).
 
 ## vote-server-for-redux-tasks
 
