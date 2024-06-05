@@ -24,7 +24,6 @@ const useForm = () => {
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState({});
-
     const dispatch = useDispatch();
 
     const validateForm = () => { // Валидация формы
@@ -65,7 +64,7 @@ const useForm = () => {
             })
             .catch ((error) => { 
                 if (error === 400) {
-                    newError.login = 'Username or password is incorrect. Please check your data or ';
+                    newError.login = 'Username or password is incorrect. Please check your data or :';
                 }
                 setError(newError);
             })  
@@ -99,8 +98,9 @@ export const Login = () => { //Компонент с авторизацией
                     {/* Пользователь не найден */}
                     {error.login && <div className="error-message">
                         {error.login} 
-                        <a href="/registration">register</a>
                     </div>}
+
+                    <span>⇠ <a href="/registration">Create an account</a></span>
                 </form>
             </div>
         </div>

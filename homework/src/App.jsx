@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
-import { Route, Router, RouterProvider, createBrowserRouter, createRoutesFromElements, useNavigate } from "react-router-dom";
+import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { SET_CURRENTUSER } from './store/actions';
 import { MainPage } from "./pages/MainPage";
 import { ChatPage } from "./pages/ChatPage";
 import { Registration } from "./pages/Registration";
 import { Login } from "./pages/Login";
+import { PrivateRoute } from "./components/PrivateRoute";
 
 const router = createBrowserRouter( 
   createRoutesFromElements( 
@@ -29,33 +30,32 @@ const router = createBrowserRouter(
 
       {/* Cтраница с чатом */}
       <Route
-        path="chat" 
-        element={<ChatPage />} 
-      />
+        path="chat" 	        
+        element={     
+          <PrivateRoute>
+            <ChatPage />
+          </PrivateRoute>   
+        }   
+      /> 
     </>
   )
 );
 
 function App() {
-
   const dispatch = useDispatch();
-  const nagitation = useNavigate();
 
   useEffect(() => {
     const user = localStorage.getItem('user'); 
     if (user) { 
-        const userData = JSON.parse(user); 
-        if (userData.token) { 
-          dispatch({ type: SET_CURRENTUSER, payload: userData }); 
-          nagitation('/chat');
-        }
+      const userData = JSON.parse(user); 
+      if (userData.token) { 
+        dispatch({ type: SET_CURRENTUSER, payload: userData }); 
+      }
     }
 
-  }, [dispatch, nagitation]);
+  }, [dispatch]);
 
-  <Router>
-    <RouterProvider router={router} />
-  </Router>
+  return ( <RouterProvider router={router} /> )
 }
 
 export default App;

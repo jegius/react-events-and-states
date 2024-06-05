@@ -73,6 +73,26 @@ body {
   align-items: center;
 }
 
+.title-container {
+  width: 55vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.log-out {
+  padding: 0.5rem;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  color: white;
+  background-color: #4f978c;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: 0.3s ease-out;
+}
+
 .messageList {
   margin-bottom: 10px;
   width: 55vw;
@@ -114,10 +134,10 @@ body {
   background-color: #4f978c;
   border-radius: 0.5rem;
   cursor: pointer;
-  transition: background-color 0.3s ease-out;
+  transition: 0.3s ease-out;
 }
 
-.button:hover {
+.button:hover, .log-out:hover {
   background-color: #94c1ba;
 }
 
@@ -125,6 +145,6 @@ body {
   max-width: 22rem;
   color: #ff0000;
   font-size: 12px;
-  margin-top: 5px;
+  margin: 5px 0;
 }
 

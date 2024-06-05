@@ -84,7 +84,7 @@ export const Registration = () => { //Компонент с регистраци
                     </div>
 
                     <button className="button" type="submit">Register</button>
-
+                    <a href="/login">Already have an account? Log in!</a>
                 </form>
             </div>
         </div>
