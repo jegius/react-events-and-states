@@ -8,7 +8,7 @@ const registrationAction = async (username, password) => { // Отправляе
         password
     };
 
-    const res = await fetch('http://localhost:3001/register', {
+    const res = await fetch('http://localhost:3001/register', { // Отправляем заполненные данные пользователя на сервер
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -20,19 +20,20 @@ const registrationAction = async (username, password) => { // Отправляе
     } else {
         return await Promise.reject(res.status);
     }
-}
+};
 
 const useForm = () => {  // Пользовательский хук
-    const nagitation = useNavigate();
-    const [username, setUserName] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState({});
+    const nagitation = useNavigate(); // Хук для навигации на другую страницу
+    const [username, setUserName] = useState(''); // Хук, устанавливающий текущего пользователя
+    const [password, setPassword] = useState(''); // Хук, устанавливающий пароль
+
+    const [error, setError] = useState({}); // Хук, позволяющий отправить состояние
 
     const validateForm = () => { 
         const newError = {};
-        if (!username) {
+        if (!username) { // Если не заполнены поля
             newError.username = 'Name is required';
-        } else if (password.length < 5 || !password.match(/[0-9!@#$%^&*]/)) {
+        } else if (password.length < 5 || !password.match(/[0-9!@#$%^&*]/)) { // Если пароль меньше пяти символов и не содержит цифры и спец символы
             newError.password = 'Password should be at least 5 characters and contain numbers or special characters';
         } 
         setError(newError);
@@ -42,18 +43,18 @@ const useForm = () => {  // Пользовательский хук
     const onSubmitHandle = (event) => {
         event.preventDefault(); // Отмена перезагрузки
         if (!validateForm()) { // Если валидация не прошла
-          return;
+          return; // остаёмся и читаем ошибки
         }
       
-        registrationAction(username, password)
-            .then((res) => {
-                if (res.message === 'Registered successfully') {
-                    nagitation('/login');
+        registrationAction(username, password) //Вызываем функцию loginAction, которая отправляет запрос на авторизацию на сервер с именем пользователя и паролем
+            .then((res) => { // Если запрос прошел успешно (т.е. сервер ответил кодом состояния 200), то выполняется этот блок кода, res - это ответ от сервера, который содержит данные (токен)
+                if (res.message === 'Registered successfully') { // Проверяем, если пользователь зарегистрарован и код ошибки 201 (см. userHandlers в homework-backend), значит, пользователь успешно авторизовался
+                    nagitation('/login'); // И перенаправляемся на страницу авторизации
                 } 
             })
             .catch ((error) => { //если ошибка, выводим её в консоль
                 if (error === 400) {
-                    alert("User already exist. Please log in!");
+                    alert("User already exist. Please log in!"); // Если пользователь уже существует, то перенаправляемся на страницу авторизации
                     nagitation('/login');
                 }
             }); 

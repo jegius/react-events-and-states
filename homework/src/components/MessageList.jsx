@@ -23,20 +23,20 @@ const getChats = async (currentUser) => {
 };
 
 export const MessageList = () => {
-  const messages = useSelector((state) => state.chat.messages);
-  const currentUser = useSelector((state) => state.auth.currentUser.token);
+  const messages = useSelector((state) => state.chat.messages); // Хук для установки сообщений в чате
+  const currentUser = useSelector((state) => state.auth.currentUser.token); // Хук для установки текущего пользователя
   const lastMessageRef = useRef(null); // добавляем ref к последнему сообщению в списке
   const dispatch = useDispatch();
 
   useEffect(() => {
     getChats(currentUser) // Передаем currentUser в getChats
-      .then((res) => {
+      .then((res) => { // И если он найден
         if (res) {
-          dispatch({ type: SET_MESSAGES, payload: res });
+          dispatch({ type: SET_MESSAGES, payload: res }); // То показываем историю чата
         }
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error); // Либо ошибка
       });
   }, [currentUser, dispatch]); // Зависимость от токена указывает на то, что эффект должен запускаться снова при изменении токена
 

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux"; // Хук для доступа к с
 import { Navigate } from "react-router-dom"; // Компоненты для управления маршрутизацией.
 
 export const PrivateRoute = ({ children, ...rest }) => {
-  const currentUser = useSelector((state) => state.auth.currentUser);
+  const currentUser = useSelector((state) => state.auth.currentUser); // См. селекторы в store/README.md
 
   if (!currentUser) { // если пользователь не авторизован - перенаправим пользователя на роут “/login”
     return <Navigate to="/login" />;

@@ -5,7 +5,7 @@ import {
 
 const initialState = {
     messages: [],
-  };
+};
   
 const chatReducer = (state = initialState, action) => { // это функция, которая принимает текущее состояние и выполняет действие, чтобы вернуть новое состояние. Её задача - обрабатывать все изменения состояния, связанные с чатами. 
     switch (action.type) {

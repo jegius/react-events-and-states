@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { SET_CURRENTUSER } from '../store/actions';
 
 const loginAction = async (data) => { // Функция для отправки запроса на авторизацию на сервер
-    const res = await fetch('http://localhost:3001/login', {
+    const res = await fetch('http://localhost:3001/login', { 
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -12,7 +12,7 @@ const loginAction = async (data) => { // Функция для отправки 
         body: JSON.stringify(data),
     });
 
-    if (res.ok) {
+    if (res.ok) { 
         return res.json();
     } else {
         return await Promise.reject(res.status);
@@ -20,27 +20,28 @@ const loginAction = async (data) => { // Функция для отправки 
 };
 
 const useForm = () => {  
-    const nagitation = useNavigate();
-    const [username, setUserName] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState({});
-    const dispatch = useDispatch();
+    const nagitation = useNavigate(); // Хук с навигацией
+    const [username, setUserName] = useState(''); // Хук, устанавливающий текущего пользователя
+    const [password, setPassword] = useState(''); // Хук, устанавливающий пароль
+    const [error, setError] = useState({}); // Хук, устанавливающий ошибку
+
+    const dispatch = useDispatch(); // Хук, позволяющий отправить состояние
 
     const validateForm = () => { // Валидация формы
         const newError = {};
-        if (!username) {
+        if (!username) { // Если не заполнены поля
             newError.username = 'Name is required';
-        } else if (password.length < 5 || !password.match(/[0-9!@#$%^&*]/)) {
+        } else if (password.length < 5 || !password.match(/[0-9!@#$%^&*]/)) { // Если пароль меньше пяти символов и не содержит цифры и спец символы
             newError.password = 'Password should be at least 5 characters and contain numbers or special characters';
         } 
         setError(newError);
         return Object.keys(newError).length === 0;
     };
 
-    const onSubmitHandle = async (event) => { 
-        event.preventDefault();
+    const onSubmitHandle = async (event) => { // действия при нажатии на кнопку LogIn
+        event.preventDefault(); // Предотвращаем перезагрузку страницы
         if (!validateForm()) { //Если валидация не прошла, либо пользователь не зарегистрирован 
-            return;
+            return; // остаёмся и читаем ошибки
         }
 
         const newError = {};
@@ -62,7 +63,7 @@ const useForm = () => {
                     return res.json();
                 } 
             })
-            .catch ((error) => { 
+            .catch ((error) => {  // Если пользователь не существует, то выдаёт сообщение с ошибкой
                 if (error === 400) {
                     newError.login = 'Username or password is incorrect. Please check your data or :';
                 }

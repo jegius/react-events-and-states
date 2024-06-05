@@ -7,9 +7,9 @@ export const ChatPage = () => {
   const nagitation = useNavigate();
 
   useEffect(() => { // Если пользователь существует, при перезагрузке страницы, вместо авторизации остаётся на ней
-    const user = localStorage.getItem('user'); 
+    const user = localStorage.getItem('user'); // получаем объект user из локального хранилища
     if (user) { 
-      const userData = JSON.parse(user);
+      const userData = JSON.parse(user); // Распарсиваем строку JSON, содержащую данные пользователя
       if (!userData.token) { // Если пользователь не авторизован, остаётся на странице с логином
         nagitation('/login'); 
       }
@@ -20,7 +20,7 @@ export const ChatPage = () => {
 
   const handleLogout = () => { //Выход из учётной записи
     localStorage.removeItem('user'); // Удаляем из localStorage пользователя
-    nagitation('/login');
+    nagitation('/login'); // И переходим к авторизации
   }
 
   return (
