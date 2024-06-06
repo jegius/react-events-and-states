@@ -84,7 +84,7 @@ export const Registration = () => { //Компонент с регистраци
                         {error.password && <div className="error-message">{error.password}</div>}
                     </div>
 
-                    <button className="button" type="submit">Register</button>
+                    <button className="button" type="submit">To register</button>
                     <a href="/login">Already have an account? Log in!</a>
                 </form>
             </div>
