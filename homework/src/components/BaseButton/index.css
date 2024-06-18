@@ -1,0 +1,18 @@
+.base-btn {
+  background-color: aliceblue;
+  outline: none;
+  border: 3px solid #ffffff0c;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 6px;
+  transition: transform 0.3s ease;
+}
+
+.base-btn:hover {
+  border: 3px solid #2e7bee;
+  cursor: pointer;
+}
+
+.base-btn:focus {
+  transform: translateY(3px);
+}
