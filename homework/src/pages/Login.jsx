@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { SET_CURRENTUSER } from '../store/actions';
 
 const loginAction = async (data) => { // Функция для отправки запроса на авторизацию на сервер
-    const res = await fetch('http://localhost:3001/login', { 
+    const res = await fetch('http://localhost:3001/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -12,7 +12,7 @@ const loginAction = async (data) => { // Функция для отправки 
         body: JSON.stringify(data),
     });
 
-    if (res.ok) { 
+    if (res.ok) {
         return res.json();
     } else {
         return await Promise.reject(res.status);
@@ -20,12 +20,11 @@ const loginAction = async (data) => { // Функция для отправки 
 };
 
 const useForm = () => {  
-    const nagitation = useNavigate(); // Хук с навигацией
-    const [username, setUserName] = useState(''); // Хук, устанавливающий текущего пользователя
-    const [password, setPassword] = useState(''); // Хук, устанавливающий пароль
-    const [error, setError] = useState({}); // Хук, устанавливающий ошибку
-
-    const dispatch = useDispatch(); // Хук, позволяющий отправить состояние
+    const nagitation = useNavigate();
+    const [username, setUserName] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState({});
+    const dispatch = useDispatch();
 
     const validateForm = () => { // Валидация формы
         const newError = {};
@@ -39,7 +38,7 @@ const useForm = () => {
     };
 
     const onSubmitHandle = async (event) => { // действия при нажатии на кнопку LogIn
-        event.preventDefault(); // Предотвращаем перезагрузку страницы
+        event.preventDefault();
         if (!validateForm()) { //Если валидация не прошла, либо пользователь не зарегистрирован 
             return; // остаёмся и читаем ошибки
         }
@@ -63,7 +62,7 @@ const useForm = () => {
                     return res.json();
                 } 
             })
-            .catch ((error) => {  // Если пользователь не существует, то выдаёт сообщение с ошибкой
+            .catch ((error) => { // Если пользователь не существует, то выдаёт сообщение с ошибкой
                 if (error === 400) {
                     newError.login = 'Username or password is incorrect. Please check your data or :';
                 }

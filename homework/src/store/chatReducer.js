@@ -1,6 +1,7 @@
 import {
     ADD_MESSAGE,
-    SET_MESSAGES
+    SET_MESSAGES,
+    MESSAGE_TYPING
 } from './actions';
 
 const initialState = {
@@ -20,6 +21,12 @@ const chatReducer = (state = initialState, action) => { // это функция
             ...state,
             messages: action.payload, // Обновляем messages при загрузке сообщений в историю
         };
+
+        case MESSAGE_TYPING:
+            return {
+                ...state, // Принимается текущее состояние
+                messages: [...state.messages, action.payload], // Обновляем при добавлении сообщений
+            };
 
         default: // В зависимости от `action.type`, `chatReducer` изменяет различные аспекты состояния. Если тип действия неизвестен, редуктор вернет текущее состояние без изменений.
         return state;

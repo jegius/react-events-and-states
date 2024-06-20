@@ -25,10 +25,13 @@ const getChats = async (currentUser) => {
 export const MessageList = () => {
   const messages = useSelector((state) => state.chat.messages); // Хук для установки сообщений в чате
   const currentUser = useSelector((state) => state.auth.currentUser.token); // Хук для установки текущего пользователя
+  const typing = useSelector((state) => state.chat.typing); // Хук для установки состояния typing
   const lastMessageRef = useRef(null); // добавляем ref к последнему сообщению в списке
+
   const dispatch = useDispatch();
 
   useEffect(() => {
+    setInterval(() => {
     getChats(currentUser) // Передаем currentUser в getChats
       .then((res) => { // И если он найден
         if (res) {
@@ -38,6 +41,7 @@ export const MessageList = () => {
       .catch((error) => {
         console.log(error); // Либо ошибка
       });
+    }, 3000);
   }, [currentUser, dispatch]); // Зависимость от токена указывает на то, что эффект должен запускаться снова при изменении токена
 
   useEffect(() => {
@@ -55,6 +59,7 @@ export const MessageList = () => {
           />
         ))}
       </ul>
+      {typing && <p>Другой пользователь печатает...</p>}
     </div>
   );
 };

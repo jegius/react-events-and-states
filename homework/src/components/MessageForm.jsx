@@ -42,8 +42,8 @@ export const MessageForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="messageFormContainer">     
-        <div>
+      <div className="messageContainer">     
+        <div className="messageContainerInput">
             <input
                 className="message-input"
                 type="text"
@@ -52,7 +52,9 @@ export const MessageForm = () => {
                 onChange={(e) => setMessage(e.target.value)}
             />
         </div>
-        <button className="button" type="submit">Send</button>
+        <div>
+          <button className="chat-button" type="submit">Send</button>
+        </div>
       </div>
     </form>
   );
