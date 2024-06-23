@@ -1,38 +1,217 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poetsen+One&family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap');
+
+body {
+  font-family: "Reddit Sans", sans-serif;
+  background-color: #c8dfda;
+}
+
+.button {
+  padding: 1rem;
+  margin-bottom: 1rem;
   text-align: center;
+  text-decoration: none;
+  border: none;
+  color: white;
+  background-color: #4f978c;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: 0.3s ease-out;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.button:hover, .log-out:hover {
+  background-color: #94c1ba;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* MainPage, Registration, Login */
+.registration-error {
+  min-width: 100vw;
+  margin-top: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  text-align: center;
+}
+
+.title {
+  font-size: 22px;
+  color: #774c4c;
+}
+
+.title-description {
+  font-size: 16px;
+  color: #774c4c;
+}
+
+.form-container {
+  margin-top: 100px;
+  padding: 2rem;
+  background-color: #fff;
+  box-shadow: 0 0 1rem 0 #0000001a;
+  border-radius: 1rem;
+  transition: all 0.3s ease-out;
+  align-items: center;
+  flex: 1;
+  text-align: left;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container_item {
+  margin-bottom: 1rem;
+}
+
+.input {
+  min-width: 20rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-out;
+  outline: none;
+}
+
+.input:focus {
+  box-shadow: 0 0 0.5rem 0 #504040ee;
+}
+
+.error-message {
+  max-width: 22rem;
+  color: #ff0000;
+  font-size: 12px;
+  margin: 5px 0;
+}
+
+/* ChatPage */
+.chat-page { 
+  width: 90vw; 
+  height: 80vh;
+  margin: auto;
+  margin-top: 8vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.chat-wrapper { /* Модуль чата */
+  width: 70vw; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 80vh;
+}
+
+.user-list { /* Список активных пользователей */
+  grid-column: 1 / 2;
+  margin-top: 3.6em;
+  max-height: 100%;
+  padding: 20px;/* */
+  box-shadow: 0 0 0.5rem 0 #ae8b8bee;
+  background-color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.title-container {
+  grid-column: 2 / 4;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.log-out_button {
+  padding: 0.5rem;
+  text-align: center;
+  text-decoration: none;
+  border: none;
   color: white;
+  background-color: #4f978c;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: 0.3s ease-out;
 }
 
-.App-link {
-  color: #61dafb;
+.messageFormContainer { /* div с компонентом формы отправки */
+  width: 100%; 
+  grid-column: 2 / 3;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* MessageList */
+.messageList {
+  grid-column: 2 / 3;
+  margin-bottom: 10px;
+  width: 100%;
+  height: 80rem;
+  padding: 8px 0;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.5rem 0 #ae8b8bee;
+  text-align: left;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  word-wrap: break-word;
+}
+
+.message { /* Сообщения других пользователей */
+  background-color: #c1e0db;
+  padding: 1rem;
+  margin: 10px 0;
+  width: 45%;
+  border-radius: 20px 20px 20px 0;
+}
+.message-user{ /* Сообщения пользователя */
+  background-color: #79a8bf;
+  padding: 1rem;
+  margin: 10px 30vw;
+  width: 45%;
+  border-radius: 20px 20px 0 20px;
+}
+
+/* MessageForm */
+.messageContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.messageContainerInput {
+  flex-grow: 1;
+}
+
+.message-input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1rem;/* */
+  border-radius: 0.5rem;/* */
+  border: 1px solid #ccc;/* */
+  box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.1);/* */
+  transition: box-shadow 0.3s ease-out;/* */
+  outline: none;/* */
+}
+
+.chat-button {
+  padding: 1rem;/* */
+  text-align: center;/* */
+  text-decoration: none;/* */
+  border: none;/* */
+  color: white;/* */
+  background-color: #4f978c;/* */
+  border-radius: 0.5rem;/* */
+  cursor: pointer;/* */
+  transition: 0.3s ease-out;/* */
+}
+.chat-button:hover {
+  background-color: #94c1ba;/* */
 }

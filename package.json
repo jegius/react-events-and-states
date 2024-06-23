@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "@babel/cli": "^7.24.5",
+    "@babel/core": "^7.24.5",
+    "babel-preset-env": "^1.7.0"
+  },
+  "dependencies": {
+    "react-router-dom": "^6.23.0",
+    "redux": "^5.0.1"
+  }
+}
