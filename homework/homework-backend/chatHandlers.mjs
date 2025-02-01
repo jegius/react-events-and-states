@@ -1,3 +1,5 @@
+// homework-backend/chatHandlers.mjs
+
 let chats = [];
 
 export const getAllChats = (req, res) => {

@@ -1,13 +1,14 @@
+//  homework-backend/swagger.mjs
 import swaggerJSDoc from 'swagger-jsdoc';
 import {getPort} from './app.mjs';
 
-const swaggerDefinition = {
+ const swaggerDefinition = {
     info: {
         title: 'Node Swagger API',
         version: '1.0.0',
         description: 'Demonstrating how to describe a RESTful API with Swagger',
     },
-    host: `localhost:${getPort()}`,
+    host: `localhost:${getPort(3001)}`, // Передаём порт
     basePath: '/',
     securityDefinitions: {
         Bearer: {
@@ -18,11 +19,11 @@ const swaggerDefinition = {
             bearerFormat: 'JWT',
         },
     },
-};
-
-const options = {
+ };
+ 
+ const options = {
     swaggerDefinition,
     apis: ['./app.mjs'],
-};
-
-export const swaggerSpec = swaggerJSDoc(options);
+ };
+ 
+ export const swaggerSpec = swaggerJSDoc(options);
