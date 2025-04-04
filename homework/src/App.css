@@ -1,3 +1,4 @@
+/* Общие стили */
 .App {
   text-align: center;
 }
@@ -24,15 +25,165 @@
   color: white;
 }
 
+/* Ссылки */
 .App-link {
   color: #61dafb;
 }
 
+/* Анимация логотипа */
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* Стили для страницы регистрации/авторизации */
+.auth-container {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.auth-container h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.auth-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-container input {
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.auth-container input:focus {
+  outline: none;
+  border-color: #61dafb;
+}
+
+.auth-container button {
+  padding: 12px;
+  border: none;
+  background-color: #61dafb;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.auth-container button:hover {
+  background-color: #4fa3f7;
+}
+
+.auth-container p {
+  font-size: 14px;
+  color: #888;
+}
+
+.auth-container p a {
+  color: #61dafb;
+  text-decoration: none;
+}
+
+.auth-container p a:hover {
+  text-decoration: underline;
+}
+
+/* Стили для чата */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: scroll;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.chat-message {
+  margin-bottom: 15px;
+}
+
+.chat-message p {
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 4px;
+  max-width: 75%;
+  margin: 5px 0;
+}
+
+.chat-message.from-me p {
+  background-color: #61dafb;
+  color: white;
+  align-self: flex-end;
+}
+
+.chat-input-container {
+  display: flex;
+  border-top: 1px solid #ddd;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.chat-input:focus {
+  outline: none;
+  border-color: #61dafb;
+}
+
+.chat-submit {
+  background-color: #61dafb;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+.chat-submit:hover {
+  background-color: #4fa3f7;
+}
+
+/* Поддержка адаптивности */
+@media (max-width: 768px) {
+  .auth-container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .chat-container {
+    width: 90%;
   }
 }
