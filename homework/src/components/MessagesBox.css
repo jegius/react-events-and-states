@@ -1,0 +1,29 @@
+.message{
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin-top: 5px;
+    width: fit-content;
+    max-width: 85vw;
+    overflow: auto;
+    height: 18px;
+}
+
+.message_user{
+    background-color: lightgreen;
+    align-self: end;
+    text-align: right;
+    margin-right: 15px;
+
+}
+
+.message_others{
+    background-color: lightblue;
+    align-self: flex-start;
+    text-align: left;
+    margin-left: 15px;    
+}
+
+.isAuthor{
+    background-color: lightskyblue;
+    margin-left: 15px;;
+}
