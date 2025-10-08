@@ -1,0 +1,29 @@
+.wrapper {
+    min-height: 100vh;
+    min-width: 100vw;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    display: flex;
+    left: 0;
+    top: 0;
+    background-color: rgba(238, 238, 238, 0.73);
+}
+
+.form__controls {
+    justify-content: space-between;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: .5rem;
+    gap: 1rem;
+    padding: 1rem;
+}
