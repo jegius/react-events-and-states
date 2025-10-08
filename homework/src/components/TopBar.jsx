@@ -1,5 +1,3 @@
-import { useSelector } from "react-redux"
-import { selectUser } from "../store/selectors"
 import './TopBar.css'
 
 export default function TopBar({logout}){
