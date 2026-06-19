@@ -148,17 +148,33 @@ button:disabled {
   min-height: 0;
   overflow-y: auto;
   padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
   background: #f8fafc;
   border-radius: 16px;
 }
 
-.empty-list {
+.messages-list.empty-list {
+  display: flex;
   align-items: center;
   justify-content: center;
   color: #64748b;
+}
+
+.virtual-scroll {
+  position: relative;
+}
+
+.virtual-scroll-spacer {
+  position: relative;
+  width: 100%;
+}
+
+.virtual-scroll-item {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: flex-start;
+  padding-bottom: 12px;
 }
 
 .message-item {
@@ -172,6 +188,7 @@ button:disabled {
 
 .own-message {
   align-self: flex-end;
+  margin-left: auto;
   background: #dbeafe;
   border-color: #bfdbfe;
   border-radius: 16px 16px 4px 16px;
